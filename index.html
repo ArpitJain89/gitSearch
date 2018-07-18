@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" href="css/search.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/pagination.min.js"></script>
+    <script src="js/search.js"></script>
+
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div class="dropdown navDropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Sort By
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="#" id="sortByNameAZ">Name (A - Z)</a>
+                </li>
+                <li>
+                    <a href="#" id="sortByNameZA">Name (Z - A)</a>
+                </li>
+                <li>
+                    <a href="#" id="sortByRankAsc">Rank Ascending</a>
+                </li>
+                <li>
+                    <a href="#" id="sortByRankDesc">Rank Descending</a>
+                </li>
+            </ul>
+        </div>
+        <div class="search-container">
+            <input type="text" placeholder="Search.." name="search" id="userName">
+            <button type="button" id="searchButton" onclick="getUsersList()">
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="users" id="">
+        <p id="userCount">Total Result : 2</p>
+        <div id="gitUsersList">
+            <div class="user" id="user1">
+                <div class="userDisplay">
+                    <div class="userPhoto">
+                        <img src="./userImage.png" alt="Avatar">
+                    </div>
+                    <div class="userInfo">
+                        <div class="userName">
+                            <h3>Varun Shriniwas</h3>
+                        </div>
+                        <div class="userId">
+                            <label>Profile Id :- </label>http://github.com/varun1505</div>
+                        <div class="userContent">
+                            <p>
+                                <label>User Score :- </label>
+                                <label class="score">10</label>
+                            </p>
+                            <p>
+                                <label>Followers Count :- </label>0</p>
+                        </div>
+                    </div>
+                    <div class="detailsButton">
+                        <button data-toggle="collapse" data-target="#git_user1" data-url="' + userRepoUrl + '" onclick="getUserDetails(this);">Details</button>
+                    </div>
+                </div>
+                <div id="userDetails">
+                    <div id="git_user1" class="collapse"></div>
+                </div>
+            </div>
+            <div class="user" id="user2">
+                <div class="userDisplay">
+                    <div class="userPhoto">
+                        <img src="./userImage.png" alt="Avatar">
+                    </div>
+                    <div class="userInfo">
+                        <div class="userName">
+                            <h3>Arun Goyal</h3>
+                        </div>
+                        <div class="userId">
+                            <label>Profile Id :- </label>http://github.com/arun123</div>
+                        <div class="userContent">
+                            <p>
+                                <label>User Score :- </label>
+                                <label class="score">5</label>
+                            </p>
+                            <p>
+                                <label>Followers Count :- </label>0</p>
+                        </div>
+                    </div>
+                    <div class="detailsButton">
+                        <button data-toggle="collapse" data-target="#git_user2" data-url="' + userRepoUrl + '" onclick="getUserDetails(this);">Details</button>
+                    </div>
+                </div>
+                <div id="userDetails">
+                    <div id="git_user2" class="collapse"></div>
+                </div>
+            </div>
+        </div>
+        <div id="page-selection"></div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#userName').keypress(function (event) {
+                var keycode = (event.keyCode ? event.keyCode : event.which);
+                if (keycode == '13') {
+                    $('#searchButton').click();
+                }
+            });
+        });
+
+        $(".dropdown li a").click(function () { // On dropdown click.
+            $(this).closest('.navDropdown').children(".btn").html('Sort By ' + $(this).html() + '<i class="fa fa-angle-down"></i>');
+            sortUser($(this)[0].id);
+        });
+    </script>
+</body>
+
+</html>
